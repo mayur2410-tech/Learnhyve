@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Essential Skills Workshops</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        :root {
+            --bg-gradient-light-from: #fff1e6;
+            --bg-gradient-light-to: white;
+            --bg-gradient-dark-from: #431407;
+            --bg-gradient-dark-to: #000;
+
+            --primary-color: #ea761d;
+            --primary-hover: #d87a1d;
+            --muted-text: #64748b;
+            --background: #ffffff;
+            --border-color: #e5e7eb;
+            --header-height: 4rem;
+        }
+
+        body {
+            background: linear-gradient(to bottom,
+                    var(--bg-gradient-light-from),
+                    var(--bg-gradient-light-to),
+                    var(--bg-gradient-light-from));
+            overflow-x: hidden;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(to bottom,
+                        var(--bg-gradient-dark-from),
+                        var(--bg-gradient-dark-to),
+                        var(--bg-gradient-dark-from));
+            }
+        }
+
+        .background-blobs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .background-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+        }
+
+        .blob-left {
+            background-color: rgb(254, 202, 202);
+            left: -25%;
+            top: -25%;
+            width: 50%;
+            height: 50%;
+        }
+
+        .blob-right {
+            background-color: rgb(254, 202, 202);
+            right: -25%;
+            bottom: -25%;
+            width: 50%;
+            height: 50%;
+        }
+
+        /* Navigation Styles */
+        .nav {
+          background: white;
+          padding: 1rem 2rem;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+          position: fixed;
+          width: 100%;
+          top: 0;
+          z-index: 1000;
+      }
+
+      .nav-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      .logo {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          text-decoration: none;
+          color: #000;
+          font-weight: bold;
+          font-size: 1.5rem;
+      }
+
+      .logo img {
+          height: 40px;
+      }
+
+      .logo span {
+          color: #ff6b1a;
+      }
+
+      .nav-links {
+          display: flex;
+          gap: 2rem;
+          align-items: center;
+      }
+
+      .nav-links a {
+          text-decoration: none;
+          color: #333;
+          font-weight: 600;
+          transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+          color: #ff6b1a;
+      }
+
+      .contact-btn {
+          background: #f66518;
+          color: white;
+          padding: 0.5rem 1.25rem;
+          border-radius: 6px;
+          border: none;
+          font-weight: 650;
+          cursor: pointer;
+          transition: background-color 0.2s;
+      }
+
+      .contact-btn:hover {
+          background: #e85d0c;
+      }
+
+      .menu-toggle {
+          display: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+      }
+
+  /*---end Main_navbar--*/
+
+        /* Footer Styles */
+        footer {
+            background-color: #f3f4f6;
+            color: #4a5568;
+        }
+
+        .foot-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            margin-bottom: 2rem;
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .foot-description {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #6b7280;
+        }
+
+        .foot-brand {
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .foot-logo {
+            width: auto;
+            height: 4rem;
+        }
+
+        .brand-highlight {
+            color: #2d89ef;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-link {
+            display: block;
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #2d89ef;
+        }
+
+        .footer-address {
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .footer-contact {
+            color: #2d89ef;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .footer-contact:hover {
+            text-decoration: underline;
+        }
+
+        .foot-social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #2d89ef;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+        .menu-toggle {
+            display: block;
+        }
+        footer bg-secondary{
+            width: 100%;
+        }
+    }
+    </style>
+</head>
+
+<body class="relative dark:bg-black dark:text-white">
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="logoblack.png" alt="">
+            </a>
+            <div class="nav-links">
+                <a href="Home.html">Home</a>
+                <a href="Features.html">Features</a>
+                <a href="worshop.html">Workshops</a>
+                <a href="blog.html">Blogs</a>
+                <a href="about.html">About</a>
+                <button onclick="window.location.href='contact.html';" class="contact-btn">Contact Us</button>
+            </div>
+            <div class="menu-toggle">☰</div>
+        </div>
+    </nav>     
+    <!---end navigation bar--->
+  
+    <div class="background-blobs">
+        <div class="background-blob blob-left"></div>
+        <div class="background-blob blob-right"></div>
+    </div>
+
+    <div class="container relative mx-auto px-16 py-16 md:py-24">
+        <section id="header-section" class="flex flex-col md:flex-row items-center gap-8 mb-20">
+            <div class="flex-1 space-y-6 z-10">
+                <!-- Increased font size of the heading -->
+                <h1 class="text-6xl md:text-8xl font-bold text-orange-500 leading-tight">
+                    Learn the highly <span class="text-primary">essential skills</span>
+                </h1>
+                <p class="text-lg text-muted-foreground max-w-xl">
+                    Discover the essential and soft skills often overlooked by schools and colleges. These skills are
+                    crucial not just for securing a great job, but for leading a successful and fulfilling life.
+                </p>
+                <button
+                    class="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
+                    Explore Workshops
+                </button>
+            </div>
+            <div class="flex-1 relative z-10">
+                <div class="relative w-3/4 mx-auto aspect-square"> <!-- Reduced image size -->
+
+                    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+                        type="module"></script>
+                    <dotlottie-player src="https://lottie.host/357eda69-f645-41fd-83c4-1183d63fb9f6/sBQauoyLqz.lottie"
+                        background="transparent" speed="1" style="width: 600px; height: 600px" loop
+                        autoplay></dotlottie-player>
+                    <div
+                        class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary rounded-full flex items-center justify-center text-white text-4xl font-bold z-20">
+                        <span class="transform -rotate-12">+</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="text-center mb-12 relative">
+        <h2 class="text-3xl font-bold text-primary mb-4 inline-block relative">
+            The Life-Changing Skills
+            <div class="absolute -bottom-2 left-0 right-0 h-1 bg-orange-300 dark:bg-orange-700 transform skew-x-12">
+            </div>
+        </h2>
+    </div>
+
+    <div id="life-changing-skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-16 mb-20">
+        <!-- Life-changing skills will be dynamically populated -->
+    </div>
+
+    <div class="text-center mb-12 relative">
+        <h2 class="text-3xl font-bold text-primary mb-4 inline-block relative">
+            The Universal Skills
+            <div class="absolute -bottom-2 left-0 right-0 h-1 bg-orange-300 dark:bg-orange-700 transform skew-x-12">
+            </div>
+        </h2>
+    </div>
+
+    <div id="workshops-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-16 gap-6">
+        <!-- Workshops will be dynamically populated -->
+    </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-secondary">
+        <div class="foot-container">
+            <div class="footer-grid">
+                <!-- Brand and Description -->
+                <div>
+                    <a href="worshop.html" class="foot-brand">
+                        <img class="foot-logo" src="logoblack.png" alt="learnhyve-logo" />
+                    </a>
+                    <p class="foot-description">
+                        Revolutionizing education for a skilled India. Join us in our mission to empower learners with
+                        essential real-world skills.
+                    </p>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html" class="footer-link">About Us</a></li>
+                        <li><a href="Features.html" class="footer-link">Features</a></li>
+                        <li><a href="worshop.html" class="footer-link">Workshops</a></li>
+                        <li><a href="blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <address class="footer-address">
+                        Kolkata,India<br>
+                        <a href="mailto:contact@learnhyve.com" class="footer-contact">contact@learnhyve.com</a><br>
+                        <a href="mailto:Support@learnhyve.com" class="footer-contact">Support@learnhyve.com</a>
+                    </address>
+                </div>
+                <!-- Social Media Links -->
+                <div>
+                    <h3 class="footer-heading">Follow Us</h3>
+                    <div class="foot-social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61561398463423" class="social-icon"
+                            target="_blank">Facebook</a>
+                        <a href="https://www.instagram.com/learnhyve_app/" class="social-icon"
+                            target="_blank">Instagram</a>
+                        <a href="https://x.com/learnhyve_app" class="social-icon" target="_blank">Twitter</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> LearnHyve. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container')) {
+                navLinks.classList.remove('active');
+            }
+        });
+//--end Main_bar---
+
+
+        const lifeChangingSkills = [
+            {
+                title: "Personal Branding",
+                description: "Build a compelling personal brand that stands out in the competitive job market",
+                icon: "🌟",
+                color: "bg-pink-100 dark:bg-pink-900",
+                iconColor: "text-pink-500"
+            },
+            {
+                title: "Emotional Intelligence",
+                description: "Develop self-awareness and interpersonal skills for personal and professional growth",
+                icon: "❤️",
+                color: "bg-red-100 dark:bg-red-900",
+                iconColor: "text-red-500"
+            },
+            {
+                title: "Time Management",
+                description: "Master productivity techniques to maximize your potential and reduce stress",
+                icon: "⏰",
+                color: "bg-teal-100 dark:bg-teal-900",
+                iconColor: "text-teal-500"
+            },
+            {
+                title: "Leadership Development",
+                description: "Cultivate leadership skills to inspire and guide teams effectively",
+                icon: "🏆",
+                color: "bg-indigo-100 dark:bg-indigo-900",
+                iconColor: "text-indigo-500"
+            }
+        ];
+
+        const workshops = [
+            {
+                title: "Communication Skill",
+                description: "Master effective communication techniques for professional success",
+                icon: "💬",
+                color: "bg-orange-100 dark:bg-orange-900",
+                iconColor: "text-orange-500"
+            },
+            {
+                title: "Money Management",
+                description: "Learn essential financial planning and management skills",
+                icon: "💰",
+                color: "bg-green-100 dark:bg-green-900",
+                iconColor: "text-green-500"
+            },
+            {
+                title: "Stock Market & Investment",
+                description: "Understand market dynamics and investment strategies",
+                icon: "📈",
+                color: "bg-blue-100 dark:bg-blue-900",
+                iconColor: "text-blue-500"
+            },
+            {
+                title: "Problem Solving & Critical Thinking",
+                description: "Develop analytical and strategic thinking abilities",
+                icon: "💡",
+                color: "bg-purple-100 dark:bg-purple-900",
+                iconColor: "text-purple-500"
+            }
+        ];
+
+        const trendingSkills = [
+            {
+                title: "English Speaking",
+                description: "Master conversational English and business communication for global opportunities",
+                icon: "🗣️",
+                color: "bg-yellow-100 dark:bg-yellow-900",
+                iconColor: "text-yellow-500"
+            },
+            {
+                title: "AI Tools",
+                description: "Learn to leverage AI tools and platforms for enhanced productivity and innovation",
+                icon: "🤖",
+                color: "bg-cyan-100 dark:bg-cyan-900",
+                iconColor: "text-cyan-500"
+            },
+            {
+                title: "Robotics and AI",
+                description: "Explore robotics fundamentals and artificial intelligence applications",
+                icon: "🦾",
+                color: "bg-violet-100 dark:bg-violet-900",
+                iconColor: "text-violet-500"
+            },
+            {
+                title: "Yoga & Self Defense",
+                description: "Combine mindful movement with practical self-defense techniques",
+                icon: "🧘",
+                color: "bg-rose-100 dark:bg-rose-900",
+                iconColor: "text-rose-500"
+            }
+        ];
+
+        function createSkillCards(skills, gridId) {
+            const grid = document.getElementById(gridId);
+
+            skills.forEach((skill, index) => {
+                const card = document.createElement('div');
+                card.className = 'skill-card opacity-0 transform translate-y-10';
+                card.innerHTML = `
+                    <div class="group h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg overflow-hidden">
+                        <div class="p-6">
+                            <div class="${skill.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 shadow-md">
+                                <span class="text-4xl">${skill.icon}</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 ${skill.iconColor}">${skill.title}</h3>
+                            <p class="text-muted-foreground mb-4">${skill.description}</p>
+                            <button class="mt-4 p-0 h-auto font-semibold text-primary hover:underline">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Create skills grids
+        createSkillCards(lifeChangingSkills, 'life-changing-skills-grid');
+        createSkillCards(workshops, 'workshops-grid');
+
+        // Advanced animations using GSAP
+        gsap.set(".background-blobs", { perspective: 1000 });
+
+        gsap.from(".background-blob", {
+            scale: 0.5,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power3.out"
+        });
+
+        gsap.from("#header-section", {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        // Staggered animation for skill cards
+        gsap.to(".skill-card", {
+            opacity: 1,
+            y: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+
+        const trendingSection = `
+    <div class="text-center mb-2 relative py-16">
+        <h2 class="text-3xl font-bold text-primary mb-4 inline-block relative ">
+            Trending Skills
+            <div class="absolute -bottom-2 left-0 right-0 h-1 bg-orange-300 dark:bg-orange-700 transform skew-x-12 "></div>
+        </h2>
+    </div>
+
+    <div id="trending-skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-16 gap-6 mb-12">
+        <!-- Trending skills will be dynamically populated -->
+    </div> 
+`;
+        document.querySelector('#workshops-grid').insertAdjacentHTML('afterend', trendingSection);
+        createSkillCards(trendingSkills, 'trending-skills-grid');
+
+        // Update the GSAP animation to include the new section:
+        gsap.to(".skill-card", {
+            opacity: 1,
+            y: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+
+        // Dark mode toggle functionality
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const yearSpan = document.getElementById("year");
+            const currentYear = new Date().getFullYear();
+            yearSpan.textContent = currentYear;
+        });
+    </script>
+</body>
+
+</html>
