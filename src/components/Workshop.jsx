@@ -436,14 +436,14 @@ const Workshop = () => {
 
       {/* Life-Changing Skills Section */}
       <section ref={lifeChangingRef} className="relative min-h-screen -mt-72 bg-gradient-to-b from-transparent via-black/80 to-black snap-start">
-        <div className="text-center mb-12 pt-8">
-          <h2 className="text-3xl font-bold text-white mb-4 inline-block relative">
+        <div className="text-center mt-60 pt-8">
+          <h2 className="text-3xl font-bold text-white mb-4 inline-block relative ">
             The Life-Changing Skills
             <div className="absolute -bottom-2 left-0 right-0 h-1 bg-orange-300 dark:bg-orange-700 transform skew-x-12"></div>
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen flex items-center justify-center"
+          className="sticky top-0 h-screen pb-80 flex items-center justify-center"
         >
           {isLifeChangingInView &&
             lifeChangingSkills.map((skill, index) => (
@@ -459,7 +459,7 @@ const Workshop = () => {
       </section>
 
       {/* Workshops Section */}
-      <section ref={workshopsRef} className="relative min-h-screen -mt-10 bg-[#000]  snap-start">
+      <section ref={workshopsRef} className="relative min-h-screen -mt-96 bg-[#000]  snap-start">
         <div className="text-center mb-12 pt-8">
           <h2 className="text-3xl font-bold text-white mb-4 inline-block relative">
             The Universal Skills
@@ -467,7 +467,7 @@ const Workshop = () => {
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen flex items-center justify-center"
+          className="sticky top-0 h-screen flex items-center pb-96 justify-center"
         >
           {isWorkshopsInView &&
             workshops.map((skill, index) => (
@@ -483,7 +483,7 @@ const Workshop = () => {
       </section>
 
       {/* Trending Skills Section */}
-      <section ref={trendingRef} className="relative min-h-screen -mt-10  bg-[#000]  snap-start">
+      <section ref={trendingRef} className="relative min-h-screen  -mt-96  bg-[#000]  snap-start">
         <div className="text-center mb-12 pt-8">
           <h2 className="text-3xl font-bold text-white mb-4 inline-block relative">
             Trending Skills
@@ -491,7 +491,7 @@ const Workshop = () => {
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen flex items-center justify-center"
+          className="sticky top-0 h-screen flex items-center  pb-96 justify-center"
         >
           {isTrendingInView &&
             trendingSkills.map((skill, index) => (
@@ -506,7 +506,7 @@ const Workshop = () => {
         <div className="h-[30vh]" />
       </section>
 
-      <footer className="footer bg-secondary">
+      <footer className="footer bg-secondary  ">
         <div className="foot-container">
           <div className="footer-grid">
             <div>
@@ -539,7 +539,7 @@ const Workshop = () => {
             <div>
               <h3 className="footer-heading">Follow Us</h3>
               <div className="foot-social-links">
-                <a href="https://www.facebook.com/profile.php?id=61561398463423" className="social-icon" target="_blank">Facebook</a>
+                <a href="https://www.facebook.com/profile.php?id=61561398463423" className="social-icon " target="_blank">Facebook</a>
                 <a href="https://www.instagram.com/learnhyve_app/" className="social-icon" target="_blank">Instagram</a>
                 <a href="https://x.com/learnhyve_app" className="social-icon" target="_blank">Twitter</a>
               </div>

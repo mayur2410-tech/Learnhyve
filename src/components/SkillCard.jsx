@@ -9,7 +9,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
   // Define xOffset for 1x4 row (grid positions) with increased gaps
   const xOffsetValues = [-550, -185, 180, 550];
   const xOffset = xOffsetValues[index];
-  const yOffset = 0;
+  const yOffset = 0
 
   // Check session storage to determine if animation should run
   useEffect(() => {
