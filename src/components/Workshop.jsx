@@ -119,15 +119,15 @@ const Workshop = () => {
   // Scroll progress for each section
   const { scrollYProgress: lifeChangingProgress } = useScroll({
     target: lifeChangingRef,
-    offset: ["start start", "end start"],
+    offset: ["start center", "end start"],
   });
   const { scrollYProgress: workshopsProgress } = useScroll({
     target: workshopsRef,
-    offset: ["start start", "end start"],
+    offset: ["start center", "end start"],
   });
   const { scrollYProgress: trendingProgress } = useScroll({
     target: trendingRef,
-    offset: ["start start", "end start"],
+    offset: ["start center", "end start"],
   });
 
   // Transform scroll progress
