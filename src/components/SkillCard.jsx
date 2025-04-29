@@ -36,24 +36,24 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
 
   // Define grid positions with better spacing for different screen sizes
   const xOffsetValues = isMobile 
-    ? [-90, 90] 
-    : isTablet 
-      ? [-250, -120, 120, 250] 
-      : [-550, -185, 180, 550];
-  
-  const yOffsetValues = isMobile 
-    ? [-160, 20] 
-    : isTablet 
-      ? [-80, 80] 
-      : [0];
+  ? [0] 
+  : isTablet 
+    ? [-250, -120, 120, 250] 
+    : [-550, -185, 180, 550];
 
-  // Calculate positions
-  const xOffset = xOffsetValues[isMobile ? index % 2 : isTablet ? index % 4 : index];
-  const yOffset = isMobile 
-    ? yOffsetValues[Math.floor(index / 2)] 
-    : isTablet 
-      ? yOffsetValues[Math.floor(index / 4)] 
-      : 0;
+// Use fixed vertical spacing for mobile (e.g., 250px apart)
+const yOffset = isMobile 
+  ? index * 310
+  : isTablet 
+    ? [-80, 80][Math.floor(index / 4)] 
+    : 0;
+
+const xOffset = isMobile 
+  ? 0 
+  : isTablet 
+    ? xOffsetValues[index % 4] 
+    : xOffsetValues[index];
+
 
   useEffect(() => {
     const hasAnimated = sessionStorage.getItem(`skillCardAnimated_${skill.title}`);
@@ -84,7 +84,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
   return (
     <motion.div
       className={`absolute rounded-lg shadow-lg  perspective ${
-        isMobile ? "w-[11rem] h-[11rem]" : 
+        isMobile ? "w-[20.625rem] h-[18.25rem]" : 
         isTablet ? "w-[18rem] h-[16rem]" : 
         "w-[20.625rem] h-[18.25rem] "
       }`}
@@ -123,7 +123,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
           src={logo}
           alt="LearnHyve Logo"
           className={`object-contain opacity-50 ${
-            isMobile ? "w-[100px] h-[100px]" : 
+            isMobile ? "w-32 h-32" : 
             isTablet ? "w-28 h-28" : 
             "w-32 h-32"
           }`}
@@ -140,7 +140,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
       >
         <motion.div
           className={`${skill.color} ${
-            isMobile ? "w-12 h-12" : 
+            isMobile ? "w-16 h-16" : 
             isTablet ? "w-14 h-14" : 
             "w-16 h-16"
           } rounded-2xl flex items-center justify-center mb-2 shadow-md`}
@@ -152,7 +152,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
         >
           <motion.span
             className={`${
-              isMobile ? "text-3xl" : 
+              isMobile ? "text-4xl" : 
               isTablet ? "text-3xl" : 
               "text-4xl"
             }`}
@@ -166,7 +166,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
 
         <motion.h3
           className={`${
-            isMobile ? "text-sm" : 
+            isMobile ? "text-xl" : 
             isTablet ? "text-xl" : 
             "text-xl"
           } font-semibold mb-2 ${skill.iconColor} hittar text-left`}
@@ -179,7 +179,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
 
         <motion.p
           className={`text-muted-foreground mb-4 text-left ${
-            isMobile ? "text-xs" : 
+            isMobile ? "text-base" : 
             isTablet ? "text-base" : 
             "text-base"
           }`}
@@ -189,10 +189,11 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
         >
           {skill.description}
         </motion.p>
+        
 
         <motion.button
-          className={`mt-auto p-0 h-auto font-semibold text-primary hover:underline text-left ${
-            isMobile ? "text-sm" : 
+          className={`mt-auto p-0 h-auto  font-semibold text-primary hover:underline text-left ${
+            isMobile ? "text-base" : 
             isTablet ? "text-base" : 
             "text-base"
           }`}

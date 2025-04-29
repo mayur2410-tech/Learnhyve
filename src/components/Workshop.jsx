@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import LottieAnimation from './LottieAnimation';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import SkillCard from './SkillCard';
+import Navbar from './Navbar';
 
 const lifeChangingSkills = [
   {
@@ -100,7 +101,6 @@ const trendingSkills = [
 ];
 
 const Workshop = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentYear] = useState(new Date().getFullYear());
   const headerRef = useRef(null);
   const blobsRef = useRef(null);
@@ -179,286 +179,151 @@ const Workshop = () => {
       }}
     >
       <style jsx>{`
-        :root {
-          --bg-gradient-light-from: #fff1e6;
-          --bg-gradient-light-to: white;
-          --bg-gradient-dark-from: #431407;
-          --bg-gradient-dark-to: #000;
-          --primary-color: #ea761d;
-          --primary-hover: #d87a1d;
-          --muted-text: #64748b;
-          --background: #ffffff;
-          --border-color: #e5e7eb;
-          --header-height: 4rem;
-        }
+  :root {
+    --bg-gradient-light-from: #fff1e6;
+    --bg-gradient-light-to: white;
+    --bg-gradient-dark-from: #431407;
+    --bg-gradient-dark-to: #000;
+    --primary-color: #ea761d;
+    --primary-hover: #d87a1d;
+    --muted-text: #64748b;
+    --background: #ffffff;
+    --border-color: #e5e7eb;
+    --header-height: 4rem;
+  }
 
-        body {
-          background: linear-gradient(to bottom,
-              var(--bg-gradient-light-from),
-              var(--bg-gradient-light-to),
-              var(--bg-gradient-light-from));
-          overflow-x: hidden;
-        }
+  body {
+    background: linear-gradient(
+      to bottom,
+      var(--bg-gradient-light-from),
+      var(--bg-gradient-light-to),
+      var(--bg-gradient-light-from)
+    );
+    overflow-x: hidden;
+  }
 
-        @media (prefers-color-scheme: dark) {
-          body {
-            background: linear-gradient(to bottom,
-                var(--bg-gradient-dark-from),
-                var(--bg-gradient-dark-to),
-                var(--bg-gradient-dark-from));
-          }
-        }
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: linear-gradient(
+        to bottom,
+        var(--bg-gradient-dark-from),
+        var(--bg-gradient-dark-to),
+        var(--bg-gradient-dark-from)
+      );
+    }
+  }
 
-        .background-blobs {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-          z-index: -1;
-        }
+  .background-blobs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
 
-        .background-blob {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(100px);
-          opacity: 0.2;
-        }
+  .background-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.2;
+  }
 
-        .blob-left {
-          background-color: rgb(254, 202, 202);
-          left: -25%;
-          top: -25%;
-          width: 50%;
-          height: 50%;
-        }
+  .blob-left {
+    background-color: rgb(254, 202, 202);
+    left: -25%;
+    top: -25%;
+    width: 50%;
+    height: 50%;
+  }
 
-        .blob-right {
-          background-color: rgb(254, 202, 202);
-          right: -25%;
-          bottom: -25%;
-          width: 50%;
-          height: 50%;
-        }
+  .blob-right {
+    background-color: rgb(254, 202, 202);
+    right: -25%;
+    bottom: -25%;
+    width: 50%;
+    height: 50%;
+  }
 
-        footer {
-          background-color: #f3f4f6;
-          color: #4a5568;
-        }
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      position: fixed;
+      top: 5rem;
+      left: 0;
+      right: 0;
+      background: white;
+      flex-direction: column;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
 
-        .foot-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 2rem;
-        }
+    .nav-links.active {
+      display: flex;
+      animation: slideDown 0.3s ease-out;
+    }
 
-        .footer-grid {
-          display: grid;
-          gap: 2rem;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          margin-bottom: 2rem;
-        }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .footer-heading {
-          font-size: 1.2rem;
-          font-weight: bold;
-          margin-bottom: 1rem;
-        }
+    .nav-links a {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
 
-        .foot-description {
-          font-size: 0.875rem;
-          line-height: 1.5;
-          color: #6b7280;
-        }
+    .menu-toggle {
+      display: block;
+      z-index: 101;
+    }
 
-        .foot-brand {
-          display: inline-block;
-          text-decoration: none;
-          color: inherit;
-          font-size: 1.5rem;
-          margin-bottom: 1rem;
-        }
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
 
-        .foot-logo {
-          width: auto;
-          height: 4rem;
-        }
+    .header-section {
+      padding-top: 6rem;
+    }
 
-        .brand-highlight {
-          color: #2d89ef;
-        }
+    .header-title {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
 
-        .footer-links {
-          list-style: none;
-          padding: 0;
-        }
+    .section-title {
+      font-size: 2rem;
+    }
+  }
 
-        .footer-link {
-          display: block;
-          text-decoration: none;
-          color: #6b7280;
-          font-size: 0.875rem;
-          margin-bottom: 0.5rem;
-          transition: color 0.3s;
-        }
+  @media (max-width: 480px) {
+    .header-title {
+      font-size: 2rem;
+    }
 
-        .footer-link:hover {
-          color: #2d89ef;
-        }
+    .section-title {
+      font-size: 1.75rem;
+    }
 
-        .footer-address {
-          font-size: 0.875rem;
-          line-height: 1.5;
-        }
+    .container {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  }
+`}</style>
 
-        .footer-contact {
-          color: #2d89ef;
-          text-decoration: none;
-          display: inline-block;
-          margin-top: 0.5rem;
-        }
 
-        .footer-contact:hover {
-          text-decoration: underline;
-        }
-
-        .foot-social-links {
-          display: flex;
-          gap: 1rem;
-        }
-
-        .social-icon {
-          text-decoration: none;
-          color: #6b7280;
-          font-size: 0.875rem;
-          transition: color 0.3s;
-        }
-
-        .social-icon:hover {
-          color: #2d89ef;
-        }
-
-        .footer-bottom {
-          text-align: center;
-          padding-top: 1rem;
-          border-top: 1px solid #e5e7eb;
-          font-size: 0.875rem;
-        }
-
-        @media (max-width: 768px) {
-          .nav-links {
-            display: none;
-            position: fixed;
-            top: 5rem;
-            left: 0;
-            right: 0;
-            background: white;
-            flex-direction: column;
-            padding: 1rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 100;
-          }
-
-          .nav-links.active {
-            display: flex;
-            animation: slideDown 0.3s ease-out;
-          }
-
-          @keyframes slideDown {
-            from {
-              opacity: 0;
-              transform: translateY(-10px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          .nav-links a {
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid #e5e7eb;
-          }
-
-          .menu-toggle {
-            display: block;
-            z-index: 101;
-          }
-
-          .container {
-            padding-left: 1rem;
-            padding-right: 1rem;
-          }
-
-          .header-section {
-            padding-top: 6rem;
-          }
-
-          .header-title {
-            font-size: 2.5rem;
-            line-height: 1.2;
-          }
-
-          .section-title {
-            font-size: 2rem;
-          }
-
-          .footer-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-
-          .foot-container {
-            padding: 1.5rem;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .header-title {
-            font-size: 2rem;
-          }
-
-          .section-title {
-            font-size: 1.75rem;
-          }
-
-          .container {
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-          }
-        }
-      `}</style>
-
-      <nav className="fixed top-0 left-0 w-full bg-white dark:bg-white shadow-md z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 md:h-20">
-            <Link to="/" className="logo">
-              <img src={logo} alt="Logo" className="h-10 md:h-12 w-auto" />
-            </Link>
-            <div className={`nav-links ${isMenuOpen ? 'active' : ''} hidden md:flex space-x-12 mt-3`}>
-              <Link to="/home" className="text-black dark:text-black hover:text-orange-500 dark:hover:text-orange-500 transition-colors duration-300">Home</Link>
-              <Link to="/features" className="text-black dark:text-black hover:text-orange-500 dark:hover:text-orange-500 transition-colors duration-300">Features</Link>
-              <Link to="/workshop" className="text-black dark:text-black hover:text-orange-500 dark:hover:text-orange-500 transition-colors duration-300">Workshops</Link>
-              <Link to="/blog" className="text-black dark:text-black hover:text-orange-500 dark:hover:text-orange-500 transition-colors duration-300">Blogs</Link>
-              <Link to="/about" className="text-black dark:text-black hover:text-orange-500 dark:hover:text-orange-500 transition-colors duration-300">About</Link>
-              <Link
-                to="/contact"
-                className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors duration-300"
-              >
-                Contact Us
-              </Link>
-            </div>
-            <div
-              className="menu-toggle md:hidden text-2xl cursor-pointer text-gray-700 dark:text-gray-700"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? '✕' : '☰'}
-            </div>
-          </div>
-        </div>
-      </nav>
-
+      <Navbar />
+      <div className="pt-14 md:pt-0">
       <div className="background-blobs" ref={blobsRef}>
         <div className="background-blob blob-left"></div>
         <div className="background-blob blob-right"></div>
@@ -500,7 +365,7 @@ const Workshop = () => {
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen pb-40 md:pb-80 flex items-center justify-center"
+          className="sticky top-0 h-screen pb-96 md:pb-80 flex items-center justify-center"
         >
           {isLifeChangingInView &&
             lifeChangingSkills.map((skill, index) => (
@@ -516,7 +381,7 @@ const Workshop = () => {
       </section>
 
       {/* Workshops Section */}
-      <section ref={workshopsRef} className="relative min-h-screen -mt-40 md:-mt-96 bg-[#000] snap-start">
+      <section ref={workshopsRef} className="relative min-h-screen  mt-[600px] bg-[#000] snap-start">
         <div className="text-center mb-8 md:mb-12 pt-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 inline-block relative section-title">
             The Universal Skills
@@ -524,7 +389,7 @@ const Workshop = () => {
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen flex items-center pb-40 md:pb-96 justify-center"
+          className="sticky top-0 h-screen flex items-center pb-96 justify-center"
         >
           {isWorkshopsInView &&
             workshops.map((skill, index) => (
@@ -540,7 +405,7 @@ const Workshop = () => {
       </section>
 
       {/* Trending Skills Section */}
-      <section ref={trendingRef} className="relative min-h-screen -mt-40 md:-mt-96 bg-[#000] snap-start">
+      <section ref={trendingRef} className="relative min-h-screen mt-[600px] bg-[#000] snap-start">
         <div className="text-center mb-8 md:mb-12 pt-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 inline-block relative section-title">
             Trending Skills
@@ -548,7 +413,7 @@ const Workshop = () => {
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen flex items-center pb-40 md:pb-96 justify-center"
+          className="sticky top-0 h-screen flex items-center pb-96 justify-center"
         >
           {isTrendingInView &&
             trendingSkills.map((skill, index) => (
@@ -563,50 +428,56 @@ const Workshop = () => {
         <div className="h-[20vh] md:h-[30vh]" />
       </section>
 
-      <footer className="footer bg-secondary">
-        <div className="foot-container">
-          <div className="footer-grid">
-            <div>
-              <a href="worshop.html" className="foot-brand">
-                <img className="foot-logo" src={logo} alt="learnhyve-logo" />
-              </a>
-              <p className="foot-description">
-                Revolutionizing education for a skilled India. Join us in our mission to empower learners with
-                essential real-world skills.
-              </p>
-            </div>
-            <div>
-              <h3 className="footer-heading">Quick Links</h3>
-              <ul className="footer-links">
-                <li><a href="about.html" className="footer-link">About Us</a></li>
-                <li><a href="Features.html" className="footer-link">Features</a></li>
-                <li><a href="worshop.html" className="footer-link">Workshops</a></li>
-                <li><a href="blog.html" className="footer-link">Blog</a></li>
-                <li><a href="contact.html" className="footer-link">Contact Us</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="footer-heading">Contact Us</h3>
-              <address className="footer-address">
-                Kolkata, India<br />
-                <a href="mailto:contact@learnhyve.com" className="footer-contact">contact@learnhyve.com</a><br />
-                <a href="mailto:Support@learnhyve.com" className="footer-contact">Support@learnhyve.com</a>
-              </address>
-            </div>
-            <div>
-              <h3 className="footer-heading">Follow Us</h3>
-              <div className="foot-social-links">
-                <a href="https://www.facebook.com/profile.php?id=61561398463423" className="social-icon" target="_blank" rel="noopener noreferrer">Facebook</a>
-                <a href="https://www.instagram.com/learnhyve_app/" className="social-icon" target="_blank" rel="noopener noreferrer">Instagram</a>
-                <a href="https://x.com/learnhyve_app" className="social-icon" target="_blank" rel="noopener noreferrer">Twitter</a>
-              </div>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>© <span>{currentYear}</span> LearnHyve. All rights reserved.</p>
-          </div>
+      <footer className="bg-gray-100 text-gray-700 mt-[600px]">
+  <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+      <div>
+        <a href="worshop.html" className="inline-block mb-4">
+          <img className="h-14 w-auto" src={logo} alt="learnhyve-logo" />
+        </a>
+        <p className="text-sm leading-6 text-gray-500">
+          Revolutionizing education for a skilled India. Join us in our mission to empower learners with
+          essential real-world skills.
+        </p>
+      </div>
+
+      <div>
+        <h3 className="text-base sm:text-lg font-bold mb-4">Quick Links</h3>
+        <ul className="space-y-2">
+          <li><a href="about.html" className="block text-sm text-gray-500 hover:text-blue-600">About Us</a></li>
+          <li><a href="Features.html" className="block text-sm text-gray-500 hover:text-blue-600">Features</a></li>
+          <li><a href="worshop.html" className="block text-sm text-gray-500 hover:text-blue-600">Workshops</a></li>
+          <li><a href="blog.html" className="block text-sm text-gray-500 hover:text-blue-600">Blog</a></li>
+          <li><a href="contact.html" className="block text-sm text-gray-500 hover:text-blue-600">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="text-base sm:text-lg font-bold mb-4">Contact Us</h3>
+        <address className="not-italic text-sm leading-6 text-gray-500">
+          Kolkata, India<br />
+          <a href="mailto:contact@learnhyve.com" className="text-blue-600 inline-block mt-2 hover:underline">contact@learnhyve.com</a><br />
+          <a href="mailto:Support@learnhyve.com" className="text-blue-600 inline-block mt-2 hover:underline">Support@learnhyve.com</a>
+        </address>
+      </div>
+
+      <div>
+        <h3 className="text-base sm:text-lg font-bold mb-4">Follow Us</h3>
+        <div className="flex flex-col sm:flex-row sm:gap-4 gap-2">
+          <a href="https://www.facebook.com/profile.php?id=61561398463423" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-blue-600">Facebook</a>
+          <a href="https://www.instagram.com/learnhyve_app/" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-blue-600">Instagram</a>
+          <a href="https://x.com/learnhyve_app" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-blue-600">Twitter</a>
         </div>
-      </footer>
+      </div>
+    </div>
+
+    <div className="text-center pt-4 border-t border-gray-200 text-sm text-gray-500">
+      <p>© <span>{new Date().getFullYear()}</span> LearnHyve. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+          </div>
     </div>
   );
 };

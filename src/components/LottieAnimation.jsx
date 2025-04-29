@@ -49,7 +49,6 @@ const LottieAnimation = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
           z-index: 20;
         }
