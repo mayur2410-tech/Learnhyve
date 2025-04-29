@@ -349,35 +349,92 @@ const Workshop = () => {
         @media (max-width: 768px) {
           .nav-links {
             display: none;
-            position: absolute;
-            top: 100%;
+            position: fixed;
+            top: 5rem;
             left: 0;
             right: 0;
             background: white;
             flex-direction: column;
             padding: 1rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
           }
 
           .nav-links.active {
             display: flex;
+            animation: slideDown 0.3s ease-out;
+          }
+
+          @keyframes slideDown {
+            from {
+              opacity: 0;
+              transform: translateY(-10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .nav-links a {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
           }
 
           .menu-toggle {
             display: block;
+            z-index: 101;
           }
 
-          footer.bg-secondary {
-            width: 100%;
+          .container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+
+          .header-section {
+            padding-top: 6rem;
+          }
+
+          .header-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+          }
+
+          .section-title {
+            font-size: 2rem;
+          }
+
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+
+          .foot-container {
+            padding: 1.5rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .header-title {
+            font-size: 2rem;
+          }
+
+          .section-title {
+            font-size: 1.75rem;
+          }
+
+          .container {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
           }
         }
       `}</style>
 
       <nav className="fixed top-0 left-0 w-full bg-white dark:bg-white shadow-md z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+          <div className="flex justify-between items-center h-16 md:h-20">
             <Link to="/" className="logo">
-              <img src={logo} alt="Logo" className="h-12 w-auto" />
+              <img src={logo} alt="Logo" className="h-10 md:h-12 w-auto" />
             </Link>
             <div className={`nav-links ${isMenuOpen ? 'active' : ''} hidden md:flex space-x-12 mt-3`}>
               <Link to="/home" className="text-black dark:text-black hover:text-orange-500 dark:hover:text-orange-500 transition-colors duration-300">Home</Link>
@@ -396,7 +453,7 @@ const Workshop = () => {
               className="menu-toggle md:hidden text-2xl cursor-pointer text-gray-700 dark:text-gray-700"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              ☰
+              {isMenuOpen ? '✕' : '☰'}
             </div>
           </div>
         </div>
@@ -407,43 +464,43 @@ const Workshop = () => {
         <div className="background-blob blob-right"></div>
       </div>
 
-      <div className="container relative mx-auto px-16 py-16 md:py-24">
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-16 py-8 md:py-16">
         <motion.section
           id="header-section"
-          className="flex flex-col md:flex-row items-center gap-8 mb-20"
+          className="flex flex-col md:flex-row items-center gap-8 mb-12 md:mb-20"
           initial="hidden"
           animate="visible"
           variants={variants}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <div className="flex-1 space-y-6 z-10">
-            <h1 className="text-6xl md:text-8xl font-bold text-orange-500 leading-tight">
+          <div className="flex-1 space-y-4 md:space-y-6 z-10">
+            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-orange-500 leading-tight header-title">
               Learn the highly <br /><span className="text-primary">essential skills</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-xl">
+            <p className="text-base md:text-lg text-muted-foreground max-w-xl">
               Discover the essential and soft skills often overlooked by schools and colleges. These skills are
               crucial not just for securing a great job, but for leading a successful and fulfilling life.
             </p>
-            <button className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
+            <button className="px-4 py-2 md:px-6 md:py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm md:text-base">
               Explore Workshops
             </button>
           </div>
-          <div className="flex-1 relative z-10">
+          <div className="flex-1 relative z-10 w-full md:w-auto">
             <LottieAnimation />
           </div>
         </motion.section>
       </div>
 
       {/* Life-Changing Skills Section */}
-      <section ref={lifeChangingRef} className="relative min-h-screen -mt-72 bg-gradient-to-b from-transparent via-black/80 to-black snap-start">
-        <div className="text-center mt-60 pt-8">
-          <h2 className="text-3xl font-bold text-white mb-4 inline-block relative ">
+      <section ref={lifeChangingRef} className="relative min-h-screen -mt-32 md:-mt-72 bg-gradient-to-b from-transparent via-black/80 to-black snap-start">
+        <div className="text-center mt-32 md:mt-60 pt-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 inline-block relative section-title">
             The Life-Changing Skills
             <div className="absolute -bottom-2 left-0 right-0 h-1 bg-orange-300 dark:bg-orange-700 transform skew-x-12"></div>
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen pb-80 flex items-center justify-center"
+          className="sticky top-0 h-screen pb-40 md:pb-80 flex items-center justify-center"
         >
           {isLifeChangingInView &&
             lifeChangingSkills.map((skill, index) => (
@@ -455,19 +512,19 @@ const Workshop = () => {
               />
             ))}
         </motion.div>
-        <div className="h-[30vh]" />
+        <div className="h-[20vh] md:h-[30vh]" />
       </section>
 
       {/* Workshops Section */}
-      <section ref={workshopsRef} className="relative min-h-screen -mt-96 bg-[#000]  snap-start">
-        <div className="text-center mb-12 pt-8">
-          <h2 className="text-3xl font-bold text-white mb-4 inline-block relative">
+      <section ref={workshopsRef} className="relative min-h-screen -mt-40 md:-mt-96 bg-[#000] snap-start">
+        <div className="text-center mb-8 md:mb-12 pt-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 inline-block relative section-title">
             The Universal Skills
             <div className="absolute -bottom-2 left-0 right-0 h-1 bg-orange-300 dark:bg-orange-700 transform skew-x-12"></div>
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen flex items-center pb-96 justify-center"
+          className="sticky top-0 h-screen flex items-center pb-40 md:pb-96 justify-center"
         >
           {isWorkshopsInView &&
             workshops.map((skill, index) => (
@@ -479,19 +536,19 @@ const Workshop = () => {
               />
             ))}
         </motion.div>
-        <div className="h-[30vh]" />
+        <div className="h-[20vh] md:h-[30vh]" />
       </section>
 
       {/* Trending Skills Section */}
-      <section ref={trendingRef} className="relative min-h-screen  -mt-96  bg-[#000]  snap-start">
-        <div className="text-center mb-12 pt-8">
-          <h2 className="text-3xl font-bold text-white mb-4 inline-block relative">
+      <section ref={trendingRef} className="relative min-h-screen -mt-40 md:-mt-96 bg-[#000] snap-start">
+        <div className="text-center mb-8 md:mb-12 pt-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 inline-block relative section-title">
             Trending Skills
             <div className="absolute -bottom-2 left-0 right-0 h-1 bg-orange-300 dark:bg-orange-700 transform skew-x-12"></div>
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen flex items-center  pb-96 justify-center"
+          className="sticky top-0 h-screen flex items-center pb-40 md:pb-96 justify-center"
         >
           {isTrendingInView &&
             trendingSkills.map((skill, index) => (
@@ -503,10 +560,10 @@ const Workshop = () => {
               />
             ))}
         </motion.div>
-        <div className="h-[30vh]" />
+        <div className="h-[20vh] md:h-[30vh]" />
       </section>
 
-      <footer className="footer bg-secondary  ">
+      <footer className="footer bg-secondary">
         <div className="foot-container">
           <div className="footer-grid">
             <div>
@@ -539,9 +596,9 @@ const Workshop = () => {
             <div>
               <h3 className="footer-heading">Follow Us</h3>
               <div className="foot-social-links">
-                <a href="https://www.facebook.com/profile.php?id=61561398463423" className="social-icon " target="_blank">Facebook</a>
-                <a href="https://www.instagram.com/learnhyve_app/" className="social-icon" target="_blank">Instagram</a>
-                <a href="https://x.com/learnhyve_app" className="social-icon" target="_blank">Twitter</a>
+                <a href="https://www.facebook.com/profile.php?id=61561398463423" className="social-icon" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="https://www.instagram.com/learnhyve_app/" className="social-icon" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://x.com/learnhyve_app" className="social-icon" target="_blank" rel="noopener noreferrer">Twitter</a>
               </div>
             </div>
           </div>
