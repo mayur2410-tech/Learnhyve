@@ -173,10 +173,12 @@ const Workshop = () => {
       className="relative dark:bg-black dark:text-white min-h-screen"
       style={{
         background: 'linear-gradient(135deg, #431407 20%, #000 80%)',
-        backgroundSize: 'cover',
+        minHeight: '100vh', // Ensure it takes full viewport height
         backgroundRepeat: 'no-repeat',
+        backgroundSize: '100% 100%', // Cover entire area exactly
         backgroundAttachment: 'fixed',
       }}
+      
     >
       <style jsx>{`
   :root {
@@ -365,8 +367,9 @@ const Workshop = () => {
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen pb-96 md:pb-80 flex items-center justify-center"
-        >
+className="sticky top-0 h-screen flex items-center pb-96 justify-center 
+mt-0 md:-mt-44 lg:mt-0"
+>
           {isLifeChangingInView &&
             lifeChangingSkills.map((skill, index) => (
               <SkillCard
@@ -380,8 +383,12 @@ const Workshop = () => {
         <div className="h-[20vh] md:h-[30vh]" />
       </section>
 
-      {/* Workshops Section */}
-      <section ref={workshopsRef} className="relative min-h-screen  mt-[600px] bg-[#000] snap-start">
+      {/* universe Section */}
+      <section
+  ref={workshopsRef}
+  className="relative min-h-screen bg-black snap-start
+             mt-[25rem] md:-mt-[34.5rem] lg:-mt-[26.5rem] "
+>
         <div className="text-center mb-8 md:mb-12 pt-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 inline-block relative section-title">
             The Universal Skills
@@ -389,8 +396,9 @@ const Workshop = () => {
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen flex items-center pb-96 justify-center"
-        >
+className="sticky top-0 h-screen flex items-center pb-96 justify-center 
+mt-0 md:-mt-52 lg:mt-0"
+>
           {isWorkshopsInView &&
             workshops.map((skill, index) => (
               <SkillCard
@@ -405,7 +413,11 @@ const Workshop = () => {
       </section>
 
       {/* Trending Skills Section */}
-      <section ref={trendingRef} className="relative min-h-screen mt-[600px] bg-[#000] snap-start">
+      <section
+  ref={trendingRef}
+  className="relative min-h-screen bg-black snap-start
+             mt-[25rem] md:-mt-[34.5rem] lg:-mt-[26.5rem]"
+>
         <div className="text-center mb-8 md:mb-12 pt-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 inline-block relative section-title">
             Trending Skills
@@ -413,8 +425,9 @@ const Workshop = () => {
           </h2>
         </div>
         <motion.div
-          className="sticky top-0 h-screen flex items-center pb-96 justify-center"
-        >
+className="sticky top-0 h-screen flex items-center pb-96 justify-center 
+mt-0 md:-mt-52 lg:mt-0"
+>
           {isTrendingInView &&
             trendingSkills.map((skill, index) => (
               <SkillCard
@@ -428,8 +441,8 @@ const Workshop = () => {
         <div className="h-[20vh] md:h-[30vh]" />
       </section>
 
-      <footer className="bg-gray-100 text-gray-700 mt-[600px]">
-  <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <footer className="bg-gray-100 text-gray-700 mt-[400px] md:mt-0">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mb-8">
       <div>
         <a href="worshop.html" className="inline-block mb-4">

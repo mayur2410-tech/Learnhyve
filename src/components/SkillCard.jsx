@@ -36,24 +36,26 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
 
   // Define grid positions with better spacing for different screen sizes
   const xOffsetValues = isMobile 
-  ? [0] 
-  : isTablet 
-    ? [-250, -120, 120, 250] 
-    : [-550, -185, 180, 550];
+    ? [0] 
+    : isTablet 
+      ? [-190, 200] // Two columns for tablet
+      : [-550, -185, 180, 550];
 
-// Use fixed vertical spacing for mobile (e.g., 250px apart)
-const yOffset = isMobile 
-  ? index * 310
-  : isTablet 
-    ? [-80, 80][Math.floor(index / 4)] 
-    : 0;
+  // Calculate row and column for tablet layout
+  const row = isTablet ? Math.floor(index / 2) : 0; // 2 columns
+  const col = isTablet ? index % 2 : index;
 
-const xOffset = isMobile 
-  ? 0 
-  : isTablet 
-    ? xOffsetValues[index % 4] 
-    : xOffsetValues[index];
+  const yOffset = isMobile 
+    ? index * 310
+    : isTablet 
+      ? row * 350 // Spacing between rows
+      : 0;
 
+  const xOffset = isMobile 
+    ? 0 
+    : isTablet 
+      ? xOffsetValues[col] // Use column index for tablet
+      : xOffsetValues[index];
 
   useEffect(() => {
     const hasAnimated = sessionStorage.getItem(`skillCardAnimated_${skill.title}`);
@@ -83,10 +85,10 @@ const xOffset = isMobile
 
   return (
     <motion.div
-      className={`absolute rounded-lg shadow-lg  perspective ${
+      className={`absolute rounded-lg shadow-lg perspective ${
         isMobile ? "w-[20.625rem] h-[18.25rem]" : 
-        isTablet ? "w-[18rem] h-[16rem]" : 
-        "w-[20.625rem] h-[18.25rem] "
+        isTablet ? "w-[22rem] h-[20rem]" : 
+        "w-[20.625rem] h-[18.25rem]"
       }`}
       style={{
         transformStyle: "preserve-3d",
@@ -110,9 +112,6 @@ const xOffset = isMobile
         transition: { type: "spring", stiffness: 400, damping: 10 },
       }}
     >
-    
-      
-
       {/* Back Side */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center bg-gray-900 rounded-lg"
@@ -124,7 +123,7 @@ const xOffset = isMobile
           alt="LearnHyve Logo"
           className={`object-contain opacity-50 ${
             isMobile ? "w-32 h-32" : 
-            isTablet ? "w-28 h-28" : 
+            isTablet ? "w-35 h-35" : 
             "w-32 h-32"
           }`}
           animate={{ rotate: [0, 360], scale: [1, 1.1, 1] }}
@@ -134,7 +133,7 @@ const xOffset = isMobile
 
       {/* Front Side */}
       <motion.div
-        className="absolute inset-0 flex flex-col h-full p-4 bg-white/80 dark:bg-gray-900/80 rounded-lg"
+        className="absolute inset-0 flex flex-col h-full p-4 bg-white-500/80 dark:bg-gray-900/80 rounded-lg"
         style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
         whileHover={{ boxShadow: "0px 10px 30px rgba(0,0,0,0.3)" }}
       >
@@ -153,7 +152,7 @@ const xOffset = isMobile
           <motion.span
             className={`${
               isMobile ? "text-4xl" : 
-              isTablet ? "text-3xl" : 
+              isTablet ? "text-4xl" : 
               "text-4xl"
             }`}
             initial={{ scale: shouldAnimate ? 0 : 1 }}
@@ -167,7 +166,7 @@ const xOffset = isMobile
         <motion.h3
           className={`${
             isMobile ? "text-xl" : 
-            isTablet ? "text-xl" : 
+            isTablet ? "text-2xl" : 
             "text-xl"
           } font-semibold mb-2 ${skill.iconColor} hittar text-left`}
           initial={{ opacity: shouldAnimate ? 0 : 1, x: shouldAnimate ? -20 : 0 }}
@@ -180,7 +179,7 @@ const xOffset = isMobile
         <motion.p
           className={`text-muted-foreground mb-4 text-left ${
             isMobile ? "text-base" : 
-            isTablet ? "text-base" : 
+            isTablet ? "text-lg" : 
             "text-base"
           }`}
           initial={{ opacity: shouldAnimate ? 0 : 1 }}
@@ -189,12 +188,11 @@ const xOffset = isMobile
         >
           {skill.description}
         </motion.p>
-        
 
         <motion.button
-          className={`mt-auto p-0 h-auto  font-semibold text-primary hover:underline text-left ${
+          className={`mt-auto p-0 h-auto font-semibold text-primary hover:underline text-left ${
             isMobile ? "text-base" : 
-            isTablet ? "text-base" : 
+            isTablet ? "text-lg" : 
             "text-base"
           }`}
           whileHover={{ scale: 1.1, x: 10, transition: { type: "spring", stiffness: 400, damping: 10 } }}
