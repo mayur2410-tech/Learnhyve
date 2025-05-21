@@ -8,7 +8,8 @@ const MoneyManagementSkill = () => {
   
         <h2 className="text-xl font-semibold mb-2 text-green-600">Overview</h2>
         <p className="mb-4">
-          Learning to manage money helps you make better decisions, avoid debt, and build wealth. It's a skill every person should develop early.
+          Learning  to manage money helps you make better decisions, avoid debt, and build wealth. It's a skill every person should develop early.
+          
         </p>
   
         <h2 className="text-xl font-semibold mb-2 text-green-600">Key Tips</h2>
