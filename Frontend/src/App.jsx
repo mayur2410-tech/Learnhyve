@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import  Workshop  from './components/Workshop';
 import HomePage from './components/HomePage';
-import CommunicationSkill from './components/skills/CommunicationSkill'
+import CommunicationSkill from './components/skills/CommunicationSkill/CommunicationSkill'
 import MoneyManagementSkill from './components/skills/MoneyManagementSkill'
 
 function App() {
