@@ -1,131 +1,91 @@
-"use client"
-import { Star } from "lucide-react"
+import React from 'react';
+import { Star } from 'lucide-react';
 
-export default function CommunicationSkill() {
+const CommunicationSkill = () => {
+  const pageStyle = {
+    height: '100%',
+    width: '100%',
+    background: 'linear-gradient(to bottom, #2F2F2F 0%, #000000 100%)',
+    
+    color: '#fff' // Optional: for any text you add
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-[#1c1c1c] text-white">
-      {/* Header Section */}
-      <div className="p-6 flex justify-between items-start">
-        <div className="space-y-2">
-          <h1 className="text-7xl font-medium ">Communication skill</h1>
-          <p className="text-4xl ml-2 text-gray-300 max-w-[700px]">
-            Master effective communication techniques for professional success.
-          </p>
-          <div className="flex ml-2 items-center gap-1">
-            <span className="text-4xl font-medium">4.7</span>
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-8 h-8 fill-yellow-400 text-yellow-400 ml-4" />
-            ))}
-          </div>
-          <div className="flex gap-3 ml-2  ">
-            <button className="bg-yellow-500 text-black px-4 py-2 rounded-full text-sm font-medium">Learn Now</button>
-            <button className="bg-yellow-500 text-black px-4 py-2 rounded-full text-sm font-medium">Enquire now</button>
-          </div>
-        </div>
-        <div className="bg-[#f9ebd7] w-16 h-16 rounded-2xl flex items-center justify-center">
-          <div className="w-8 h-8 bg-purple-300 rounded-full opacity-80"></div>
-        </div>
-      </div>
+    <div style={pageStyle}>
+    <div className="pt-6 pb-4">
+      <div className='ml-10'>
+      <h1 className="text-7xl font-normal mb-1" style={{ fontFamily: 'Poly, serif' }}>
+  Communication skill
+</h1>
+<p
+  className="text-3xl text-gray-300 mt-8 max-w-[800px]"
+  style={{ fontFamily: 'Poppins, sans-serif' }}
+>
+  Master effective communication techniques for professional success.
+</p>
 
-      {/* Middle Section with Person */}
-      <div className="relative mt-4">
-        <div className="bg-gradient-to-b from-[#5d4a28] to-transparent h-64 rounded-t-full mx-auto w-full max-w-md flex flex-col items-center justify-center">
-          <div className="absolute top-10">
-            <img src="/placeholder.svg?height=150&width=100" alt="Person speaking" className="h-[150px] w-auto" />
-          </div>
-          <div className="mt-32 text-center space-y-1">
-            <h2 className="text-2xl font-bold">Speak Confidently</h2>
-            <p className="text-xl font-medium">in front of anyone</p>
-          </div>
-        </div>
-      </div>
-
-      {/* What You Will Learn Section */}
-      <div className="px-6 mt-8">
-        <h3 className="text-xl font-bold text-yellow-500 mb-4">WHAT YOU WILL LEARN:</h3>
-
-        <div className="space-y-4">
-          <div className="bg-white text-black rounded-3xl p-4">
-            <h4 className="text-xl font-bold mb-1">Verbal Communication</h4>
-            <p className="text-sm text-gray-700">
-              Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the
-              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-            </p>
-          </div>
-
-          <div className="bg-white text-black rounded-3xl p-4">
-            <h4 className="text-xl font-bold mb-1">Non Verbal Communication</h4>
-            <p className="text-sm text-gray-700">
-              Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the
-              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-            </p>
-          </div>
-
-          <div className="bg-white text-black rounded-3xl p-4">
-            <h4 className="text-xl font-bold mb-1">Business Communication</h4>
-            <p className="text-sm text-gray-700">
-              Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the
-              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-            </p>
-          </div>
-        </div>
-
-        {/* Pagination Dots */}
-        <div className="flex justify-center gap-2 mt-4">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className={`w-2 h-2 rounded-full ${i === 0 ? "bg-white" : "bg-gray-500"}`} />
+      <div className="flex items-center mb-4">
+        <span className="mr-2 text-3xl mt-4">4.7</span>
+        <div className="flex mt-4 ">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <Star 
+              key={star} 
+              size={30} 
+              fill="#FAD000" 
+              color="#FAD000" 
+              className="mr-5"
+            />
           ))}
         </div>
       </div>
-
-      {/* Learning Stages Section */}
-      <div className="px-6 mt-12">
-        <h3 className="text-xl font-bold text-yellow-500 mb-6">LEARNING STAGES</h3>
-
-        <div className="flex justify-between items-center">
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center bg-transparent">
-              <span className="text-xs">Newbie</span>
-            </div>
-          </div>
-
-          <div className="h-[2px] flex-grow bg-white mx-1"></div>
-
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center bg-transparent">
-              <span className="text-xs">Advance</span>
-            </div>
-          </div>
-
-          <div className="h-[2px] flex-grow bg-white mx-1"></div>
-
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center bg-transparent">
-              <span className="text-xs">Pro</span>
-            </div>
-          </div>
-
-          <div className="h-[2px] flex-grow bg-white mx-1"></div>
-
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center bg-transparent">
-              <span className="text-xs">Expert</span>
-            </div>
-          </div>
-        </div>
       </div>
 
-      {/* What Users Say Section */}
-      <div className="px-6 mt-12 mb-8">
-        <h3 className="text-xl font-bold">
-          <span className="text-yellow-500">WHAT OUR USERS SAY</span> ABOUT US!
-        </h3>
+      <div className="flex space-x-3 ml-10">
+        <button>
+          <div className="bg-[#FAD000] text-black px-4 py-2 rounded-tl-lg rounded-tr-lg rounded-bl-lg font-semibold">
+            Learn Now
+          </div>
+        </button>
+        <button>
+          <div className="bg-[#FAD000] text-black px-4 py-2 rounded-tl-lg rounded-tr-lg rounded-bl-lg font-semibold">
+            Enquire Now
+          </div>
+        </button>
+       
+      </div>
 
-        {/* This section appears empty in the image */}
-        <div className="h-32"></div>
+      <div className="absolute top-6 right-8 w-16 h-16 bg-[#FFF6E0] rounded-2xl flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full bg-[#D8BFD8] opacity-70"></div>
       </div>
     </div>
-  )
-}
+    <div className="relative w-full overflow-hidden pb-40">
+  {/* Larger Half Circle (Dark) */}
+ {/* Dark Half Circle (Arc facing up) */}
+<div 
+  className="absolute bottom-[25%] left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-t-[400px] z-0"
+  style={{
+    background: 'linear-gradient(to bottom, rgba(243, 175, 28, 0.07) 0%, rgba(115, 115, 115, 0) 100%)',
+    boxShadow: 'inset 0 3px 0 rgba(153, 153, 153, 0.4)'
+  }}
+></div>
+<div 
+  className="absolute bottom-[30%] left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-t-[300px] z-10"
+  style={{
+    background: 'linear-gradient(183deg, #825B06, #150f0f)'
+  }}
+></div>
 
+  {/* Content above the circles */}
+  <div className="relative z-10 flex flex-col items-center justify-center pt-[280px] text-white text-center">
+    <img src="/your-illustration.png" alt="interview" className="w-[250px] mb-6" />
+    <h2 className="text-2xl font-semibold font-[Poppins]">
+      Clear any interview <br /> based on communication
+    </h2>
+  </div>
+</div>
 
+    </div>
+  );
+};
+
+export default CommunicationSkill;
