@@ -7,15 +7,19 @@ import MoneyManagementSkill from './components/skills/MoneyManagementSkill'
 
 function App() {
   return (
+    <>
     <Router>
-      <Routes>
-          <Route path="/workshop" element={<Workshop />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/skills/communication-skill" element={<CommunicationSkill />} />
-          <Route path="/skills/money-management-skill" element={<MoneyManagementSkill />} />
+       <Routes>
+       <Route path="/workshop" element={<Workshop />} />
+       <Route path="/" element={<HomePage />} />
+          <Route path="/skills/money-management-skill" element={<MoneyManagementSkill />} /> 
 
+          <Route path="/skills/communication-skill" element={<CommunicationSkill />} />
+    
       </Routes>
     </Router>
+     
+    </>
   );
 }
 
