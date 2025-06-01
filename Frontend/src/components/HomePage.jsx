@@ -8,22 +8,23 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const handleSearch = async () => {
-    if (!query.trim()) return;
+    // if (!query.trim()) return;
   
-    try {
-      const res = await fetch(`http://localhost:3000/api/skills/search?q=${encodeURIComponent(query)}`);
-      const data = await res.json();
+    // try {
+    //   const res = await fetch(`http://localhost:3000/api/skills/search?q=${encodeURIComponent(query)}`);
+    //   const data = await res.json();
   
-      if (data.success) {
-        navigate(data.redirectUrl);
-        console.log(data.redirectUrl) // Redirect to the skill page
-      } else {
-        alert("Skill not found!");
-      }
-    } catch (error) {
-      console.error("Search error:", error);
-      alert("Something went wrong. Please try again.");
-    }
+    //   if (data.success) {
+    //     navigate(data.redirectUrl);
+    //     console.log(data.redirectUrl) // Redirect to the skill page
+    //   } else {
+    //     alert("Skill not found!");
+    //   }
+    // } catch (error) {
+    //   console.error("Search error:", error);
+    //   alert("Something went wrong. Please try again.");
+    // }
+    navigate('/skills/communication-skill')
   };
   
   
