@@ -4,11 +4,16 @@ import balancer from '../../../assets/balancer.png';
 import peopletable from '../../../assets/peoples-table.png';
 import cup from '../../../assets/cup.png';
 import { Star, ArrowRight } from 'lucide-react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion"; // works from v7+
 import Marquee from './Marquee';
+import {lifeChangingSkills,workshops,trendingSkills } from '../../Workshop'
+
+// Combine all skills into one array
+const allSkills = [...lifeChangingSkills, ...workshops, ...trendingSkills];
 
 const slides = [
   { image: boy, heading: "Speak Confidently <br /> in front of anyone" },
@@ -22,10 +27,39 @@ const slides = [
 
 const CommunicationSkill = () => {
 
-
+  const { skillId } = useParams(); // Get skillId from URL
+  const navigate = useNavigate(); // For navigation fallback
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [index, setIndex] = useState(0);
+
+  // Scroll to top when the component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
+
+  // Find the skill by matching the slugified title
+  const skill = allSkills.find(
+    (s) => s.title.toLowerCase().replace(/\s+/g, '-') === skillId
+  );
+
+  // Fallback if skill is not found
+  if (!skill) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-[#2e2e2e] to-[#000000] text-white flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Skill Not Found</h2>
+          <button
+            className="px-4 py-2 bg-[#FAD000] text-black rounded-lg font-semibold hover:bg-yellow-400 transition"
+            onClick={() => navigate('/workshop')}
+          >
+            Back to Workshops
+          </button>
+        </div>
+      </div>
+    );
+  }
+
 
   useEffect(() => {
     if (!isInView) return;
@@ -44,10 +78,10 @@ const CommunicationSkill = () => {
 
           <div className="max-w-5xl  pt-16 pb-8 px-6">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 font-poppins">
-              Communication Skill
+              {skill.title} {/* Dynamic title */}
             </h1>
             <p className="text-lg md:text-2xl text-gray-300 mb-8 max-w-2xl font-inter">
-              Master effective communication techniques for professional success.
+              {skill.description} {/* Dynamic description */}
             </p>
             <div className="flex items-center mb-6">
               <span className="mr-2 text-2xl md:text-3xl font-semibold">4.7</span>
@@ -84,7 +118,7 @@ const CommunicationSkill = () => {
 
           <div className="absolute top-16 right-4 sm:right-6 lg:right-8 z-10 flex items-center justify-center">
             <div className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-[152px] lg:h-[152px] bg-[#FFEDD5] rounded-2xl flex items-center justify-center text-3xl sm:text-4xl md:text-5xl lg:text-7xl">
-              💬
+              {skill.icon} {/* Dynamic icon */}
             </div>
           </div>
         </div>

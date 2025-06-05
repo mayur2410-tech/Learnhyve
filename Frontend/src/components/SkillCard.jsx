@@ -1,6 +1,7 @@
 import { motion, useTransform } from "framer-motion";
 import logo from "../assets/card-back-logo.png";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // <-- Add this import
 
 // Define a utility hook to detect screen width with more breakpoints
 const useScreenSize = () => {
@@ -29,6 +30,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
   const { isMobile, isTablet } = useScreenSize();
   const [hasFlipped, setHasFlipped] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  const navigate = useNavigate(); // <-- Add this line
 
   // Define responsive dimensions
   const cardWidth = isMobile ? "16rem" : isTablet ? "18rem" : "20.625rem";
@@ -197,6 +199,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
           }`}
           whileHover={{ scale: 1.1, x: 10, transition: { type: "spring", stiffness: 400, damping: 10 } }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => navigate(`/skills/${encodeURIComponent(skill.title.toLowerCase().replace(/\s+/g, '-'))}`)} // Navigate to dynamic route
         >
           Learn More
         </motion.button>

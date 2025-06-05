@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import SkillCard from './SkillCard';
 import Navbar from './Navbar';
 
-const lifeChangingSkills = [
+export const lifeChangingSkills = [
   {
     title: "Personal Branding",
     description: "Build a compelling personal brand that stands out in the competitive job market",
@@ -38,7 +38,7 @@ const lifeChangingSkills = [
   }
 ];
 
-const workshops = [
+export const workshops = [
   {
     title: "Communication Skill",
     description: "Master effective communication techniques for professional success",
@@ -69,7 +69,7 @@ const workshops = [
   }
 ];
 
-const trendingSkills = [
+export const trendingSkills = [
   {
     title: "English Speaking",
     description: "Master conversational English and business communication for global opportunities",

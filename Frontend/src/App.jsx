@@ -14,7 +14,7 @@ function App() {
        <Route path="/" element={<HomePage />} />
           <Route path="/skills/money-management-skill" element={<MoneyManagementSkill />} /> 
 
-          <Route path="/skills/communication-skill" element={<CommunicationSkill />} />
+          <Route path="/skills/:skillId" element={<CommunicationSkill />} />
     
       </Routes>
     </Router>
