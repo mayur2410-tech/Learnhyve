@@ -12,28 +12,28 @@ export const lifeChangingSkills = [
     title: "Personal Branding",
     description: "Build a compelling personal brand that stands out in the competitive job market",
     icon: "🌟",
-    color: "bg-pink-100 dark:bg-pink-900",
+    color: "bg-pink-900",
     iconColor: "text-pink-500"
   },
   {
     title: "Emotional Intelligence",
     description: "Develop self-awareness and interpersonal skills for personal and professional growth",
     icon: "❤️",
-    color: "bg-red-100 dark:bg-red-900",
+    color: "bg-red-900",
     iconColor: "text-red-500"
   },
   {
     title: "Time Management",
     description: "Master productivity techniques to maximize your potential and reduce stress",
     icon: "⏰",
-    color: "bg-teal-100 dark:bg-teal-900",
+    color: "bg-teal-900",
     iconColor: "text-teal-500"
   },
   {
     title: "Leadership Development",
     description: "Cultivate leadership skills to inspire and guide teams effectively",
     icon: "🏆",
-    color: "bg-indigo-100 dark:bg-indigo-900",
+    color: "bg-indigo-900",
     iconColor: "text-indigo-500"
   }
 ];
@@ -43,28 +43,28 @@ export const workshops = [
     title: "Communication Skill",
     description: "Master effective communication techniques for professional success",
     icon: "💬",
-    color: "bg-orange-100 dark:bg-orange-900",
+    color: "bg-orange-900",
     iconColor: "text-orange-500"
   },
   {
     title: "Money Management",
     description: "Learn essential financial planning and management skills",
     icon: "💰",
-    color: "bg-green-100 dark:bg-green-900",
+    color: "bg-green-900",
     iconColor: "text-green-500"
   },
   {
     title: "Stock Market & Investment",
     description: "Understand market dynamics and investment strategies",
     icon: "📈",
-    color: "bg-blue-100 dark:bg-blue-900",
+    color: "bg-blue-900",
     iconColor: "text-blue-500"
   },
   {
     title: "Problem Solving & Critical Thinking",
     description: "Develop analytical and strategic thinking abilities",
     icon: "💡",
-    color: "bg-purple-100 dark:bg-purple-900",
+    color: "bg-purple-900",
     iconColor: "text-purple-500"
   }
 ];
@@ -74,28 +74,28 @@ export const trendingSkills = [
     title: "English Speaking",
     description: "Master conversational English and business communication for global opportunities",
     icon: "🗣️",
-    color: "bg-yellow-100 dark:bg-yellow-900",
+    color: "bg-yellow-900",
     iconColor: "text-yellow-500"
   },
   {
     title: "AI Tools",
     description: "Learn to leverage AI tools and platforms for enhanced productivity and innovation",
     icon: "🤖",
-    color: "bg-cyan-100 dark:bg-cyan-900",
+    color: "bg-cyan-900",
     iconColor: "text-cyan-500"
   },
   {
     title: "Robotics and AI",
     description: "Explore robotics fundamentals and artificial intelligence applications",
     icon: "🦾",
-    color: "bg-violet-100 dark:bg-violet-900",
+    color: "bg-violet-900",
     iconColor: "text-violet-500"
   },
   {
     title: "Yoga & Self Defense",
     description: "Combine mindful movement with practical self-defense techniques",
     icon: "🧘",
-    color: "bg-rose-100 dark:bg-rose-900",
+    color: "bg-rose-900",
     iconColor: "text-rose-500"
   }
 ];
@@ -346,7 +346,7 @@ const Workshop = () => {
             <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-orange-500 leading-tight header-title">
               Learn the highly <br /><span className="text-primary">essential skills</span>
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-xl">
+            <p className="text-base md:text-lg text-muted-foreground text-white max-w-xl">
               Discover the essential and soft skills often overlooked by schools and colleges. These skills are
               crucial not just for securing a great job, but for leading a successful and fulfilling life.
             </p>
@@ -367,7 +367,7 @@ const Workshop = () => {
         <div className="text-center mt-32 md:mt-60 pt-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 inline-block relative section-title">
             The Life-Changing Skills
-            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-orange-300 dark:bg-orange-700 transform skew-x-12"></div>
+            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-orange-700 transform skew-x-12"></div>
           </h2>
         </div>
         <motion.div
@@ -397,7 +397,7 @@ mt-0 md:-mt-44 lg:mt-0"
         <div className="text-center mb-8 md:mb-12 pt-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 inline-block relative section-title">
             The Universal Skills
-            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-orange-300 dark:bg-orange-700 transform skew-x-12"></div>
+            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-orange-700 transform skew-x-12"></div>
           </h2>
         </div>
         <motion.div
@@ -427,7 +427,7 @@ mt-0 md:-mt-52 lg:mt-0"
         <div className="text-center mb-8 md:mb-12 pt-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 inline-block relative section-title">
             Trending Skills
-            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-orange-300 dark:bg-orange-700 transform skew-x-12"></div>
+            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-orange-700 transform skew-x-12"></div>
           </h2>
         </div>
         <motion.div

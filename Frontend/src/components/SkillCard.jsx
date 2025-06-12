@@ -135,7 +135,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
 
       {/* Front Side */}
       <motion.div
-        className="absolute inset-0 flex flex-col h-full p-4 bg-white-500/80 dark:bg-gray-900/80 rounded-lg"
+className="absolute inset-0 flex flex-col h-full p-4 bg-gray-900/80 rounded-lg"
         style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
         whileHover={{ boxShadow: "0px 10px 30px rgba(0,0,0,0.3)" }}
       >
@@ -169,7 +169,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
           className={`${
             isMobile ? "text-xl" : 
             isTablet ? "text-2xl" : 
-            "text-xl"
+            "text-xl "
           } font-semibold mb-2 ${skill.iconColor} hittar text-left`}
           initial={{ opacity: shouldAnimate ? 0 : 1, x: shouldAnimate ? -20 : 0 }}
           animate={{ opacity: 1, x: 0 }}
@@ -182,7 +182,7 @@ const SkillCard = ({ skill, index, scrollProgress }) => {
           className={`text-muted-foreground mb-4 text-left ${
             isMobile ? "text-base" : 
             isTablet ? "text-lg" : 
-            "text-base"
+            "text-base text-white"
           }`}
           initial={{ opacity: shouldAnimate ? 0 : 1 }}
           animate={{ opacity: 1 }}
