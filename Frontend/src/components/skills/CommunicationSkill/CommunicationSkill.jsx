@@ -117,7 +117,7 @@ const CommunicationSkill = () => {
           {/* Right Content (Icon) */}
 
           <div className="absolute top-16 right-4 sm:right-6 lg:right-8 z-10 flex items-center justify-center">
-            <div className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-[152px] lg:h-[152px] bg-[#FFEDD5] rounded-2xl flex items-center justify-center text-3xl sm:text-4xl md:text-5xl lg:text-7xl">
+            <div className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-[182px] lg:h-[182px] bg-[#FFEDD5] rounded-2xl flex items-center justify-center text-3xl sm:text-4xl md:text-5xl lg:text-8xl">
               {skill.icon} {/* Dynamic icon */}
             </div>
           </div>
