@@ -180,8 +180,8 @@ className="absolute inset-0 flex flex-col h-full p-4 bg-gray-900/80 rounded-lg"
 
         <motion.p
           className={`text-muted-foreground mb-4 text-left ${
-            isMobile ? "text-base" : 
-            isTablet ? "text-lg" : 
+            isMobile ? "text-base text-white" : 
+            isTablet ? "text-lg text-white" : 
             "text-base text-white"
           }`}
           initial={{ opacity: shouldAnimate ? 0 : 1 }}
