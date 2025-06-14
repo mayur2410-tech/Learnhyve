@@ -447,7 +447,7 @@ mt-0 md:-mt-52 lg:mt-0"
         <div className="h-[20vh] md:h-[30vh]" />
       </section>
 
-      <footer className="bg-gray-100 text-gray-700 mt-[400px] md:mt-0">
+      <footer className="bg-gray-100 text-gray-700   mt-[550px] md:mt-0">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mb-8">
       <div>
